@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body background="images/background.png">
   <header>
     <h1>Cameron Lund</h1>
     <nav>
@@ -24,4 +24,98 @@
     <p>My name is Cameron Lund and I am a full stack software engineer. I am passionate about creating and designing
       websites and applications. I am excited to continue to learn and grow as a developer.</p>
   </section>
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skill" onmouseover="showRating(this, 4)" onmouseout="hideRating(this)">
+      <span class="skill-name">HTML</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 4)" onmouseout="hideRating(this)">
+      <span class="skill-name">CSS</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 3)" onmouseout="hideRating(this)">
+      <span class="skill-name">JavaScript</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 3)" onmouseout="hideRating(this)">
+      <span class="skill-name">Node.js</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 3)" onmouseout="hideRating(this)">
+      <span class="skill-name">Express.js</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 3)" onmouseout="hideRating(this)">
+      <span class="skill-name">ReactJS</span>
+      <span class="rating"></span>
+    </div>
+    <div class="skill" onmouseover="showRating(this, 3)" onmouseout="hideRating(this)">
+      <span class="skill-name">MongoDB</span>
+      <span class="rating"></span>
+    </div>
+  </section>
+  <section id="game">
+    <h2>Rock, Paper, Scissors</h2>
+    <div id="gameChoices">
+      <button onclick="play('rock')">Rock</button>
+      <button onclick="play('paper')">Paper</button>
+      <button onclick="play('scissors')">Scissors</button>
+    </div>
+    <p id="gameResult"></p>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      How to reach me:
+    </p>
+    <ul>
+      <li>Email: clund6314@gmail.com</li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/cameron-d-lund/">Cameron Lund</a></li>
+      <li>GitHub: <a href="https://github.com/clund6325">github.com/clund6325</a></li>
+    </ul>
+  </section>
+  <footer>
+    <p>&copy; 2024 Cameron Lund All rights reserved</p>
+  </footer>
+  <script>
+    function showRating(element, rating) {
+      let ratingElement = element.querySelector('.skill-rating');
+      ratingElement.innerHTML = getStars(rating);
+    }
+
+    function hideRating(element) {
+      let ratingElement = element.querySelector('.skill-rating');
+      ratingElement.innerHTML = '';
+    }
+
+    function getStars(rating) {
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        stars += i < rating ? '★' : '☆';
+      }
+      return stars;
+    }
+  </script>
+  <script>
+    function play(playerChoice) {
+      let choices = ['rock', 'paper', 'scissors'];
+      let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+      let result = '';
+      if (playerChoice === computerChoice) {
+        result = 'It\'s a tie!';
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = 'You win!';
+      } else {
+        result = 'You lose!';
+      }
+      document.getElementById('gameResult').innerHTML = `You chose ${playerChoice}. The computer chose ${computerChoice}. ${result}`;
+    }
+  </script>
 </body>
+
+</html>
